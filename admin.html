@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
   :root{
     --bg:#F2F3F6;
@@ -276,8 +275,8 @@
           <div class="card-title">Scan to vote</div>
           <div class="card-sub">One vote per device</div>
         </div>
-        <canvas id="qrCanvas"></canvas>
-        <div class="qr-url" id="qrUrl"></div>
+        <img id="qrImg" alt="QR code to the voting page" style="width:220px;height:220px;border-radius:16px;" src="https://api.qrserver.com/v1/create-qr-code/?size=440x440&data=https%3A%2F%2Fai-forum-peoples-choice.vercel.app%2F">
+        <div class="qr-url">https://ai-forum-peoples-choice.vercel.app/</div>
       </div>
 
       <div class="card">
@@ -367,16 +366,6 @@ let dashboardStarted = false;
 function initDashboard(){
   if (dashboardStarted) return;
   dashboardStarted = true;
-
-  // QR code — auto-detects the voting page URL next to this file
-  const votingUrl = location.href.replace(/admin\.html.*$/i, 'index.html');
-  document.getElementById('qrUrl').textContent = votingUrl;
-  const qrCanvas = document.getElementById('qrCanvas');
-  if (window.QRCode) {
-    window.QRCode.toCanvas(qrCanvas, votingUrl, { width: 220, margin: 1, color: { dark: '#14151A', light: '#FFFFFF' } }, (err) => {
-      if (err) console.error(err);
-    });
-  }
 
   // Gear toggle for controls drawer
   const controls = document.getElementById('controls');
