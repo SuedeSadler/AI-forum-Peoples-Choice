@@ -222,7 +222,10 @@
       </div>
 
       <div class="controls-section" style="margin-bottom:0;">
-        <div class="controls-note">Turn this gear off before projecting so the room only sees the display, not these controls.</div>
+        <div class="controls-section-title" style="color:var(--red);">Danger zone</div>
+        <div class="controls-note" style="margin-top:2px;margin-bottom:14px;">Permanently deletes every vote and resets all counts to zero. Use for testing, or to start a fresh round.</div>
+        <button class="btn" id="resetVotesBtn" style="background:#FBE4E4;color:var(--red);">Reset all votes</button>
+        <div class="controls-note" style="margin-top:14px;">Turn this gear off before projecting so the room only sees the display, not these controls.</div>
       </div>
     </div>
   </div>
@@ -232,7 +235,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getFirestore, doc, setDoc, deleteDoc, onSnapshot,
-  collection, serverTimestamp, Timestamp, query, where, getCountFromServer
+  collection, serverTimestamp, Timestamp, query, where, getCountFromServer,
+  getDocs, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 /* =================== CONFIG — keep in sync with index.html =================== */
@@ -291,7 +295,11 @@ function initDashboard(){
   dashboardStarted = true;
 
   document.getElementById('gearBtn').addEventListener('click', () => {
-    document.getElementById('controls').classList.toggle('open');
+    const controls = document.getElementById('controls');
+    controls.classList.toggle('open');
+    if (controls.classList.contains('open')) {
+      controls.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 
   const app = initializeApp(firebaseConfig);
@@ -502,6 +510,32 @@ function initDashboard(){
       document.getElementById('activeNumber').textContent = snap.data().count;
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  // ---------- Reset votes ----------
+  document.getElementById('resetVotesBtn').addEventListener('click', resetVotes);
+
+  async function resetVotes(){
+    const sure = confirm('This permanently deletes every vote and resets all counts to zero. Continue?');
+    if (!sure) return;
+    try {
+      const [votersSnap, tallySnap] = await Promise.all([
+        getDocs(collection(db, 'voters')),
+        getDocs(collection(db, 'tally'))
+      ]);
+      const refs = [...votersSnap.docs.map(d => d.ref), ...tallySnap.docs.map(d => d.ref)];
+      for (let i = 0; i < refs.length; i += 450) {
+        const batch = writeBatch(db);
+        refs.slice(i, i + 450).forEach(ref => batch.delete(ref));
+        await batch.commit();
+      }
+      revealed = false;
+      renderResults();
+      alert('All votes have been reset.');
+    } catch (err) {
+      console.error(err);
+      alert('Something went wrong resetting votes — check the browser console for details.');
     }
   }
 }
