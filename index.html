@@ -40,7 +40,7 @@
   }
   .wrap{width:100%;max-width:460px;}
 
-  header{text-align:center;margin-bottom:22px;}
+  header{text-align:center;margin-bottom:26px;}
   .eyebrow{
     font-family:'JetBrains Mono', monospace;
     font-size:11px;
@@ -78,34 +78,6 @@
     border-radius:4px;
   }
 
-  /* Segmented tab control */
-  .tabs{
-    display:flex;
-    background:#EAEBEF;
-    border-radius:16px;
-    padding:5px;
-    margin-bottom:20px;
-  }
-  .tab{
-    flex:1;
-    text-align:center;
-    padding:10px 8px;
-    font-family:'Plus Jakarta Sans', sans-serif;
-    font-size:13px;
-    font-weight:600;
-    color:var(--muted);
-    background:transparent;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    transition:background .2s ease, color .2s ease, box-shadow .2s ease;
-  }
-  .tab.active{background:#FFFFFF;color:var(--ink);box-shadow:0 4px 10px rgba(20,21,26,0.08);}
-  .panel{display:none;}
-  .panel.active{display:block;animation:fadeIn .3s ease;}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-
-  /* Card shell — mirrors the reference modal */
   .card{
     background:var(--card);
     border-radius:var(--radius-card);
@@ -120,7 +92,6 @@
     margin:0 0 6px;
   }
   .card-hint{font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.5;}
-  .card-divider{height:1px;background:var(--line);margin:18px 0;}
 
   .field-label{
     display:flex;
@@ -143,7 +114,6 @@
     justify-content:center;
   }
 
-  /* Ballot rows */
   .option{
     display:flex;
     align-items:center;
@@ -206,8 +176,8 @@
     color:var(--muted);
     margin-top:12px;
   }
+  .empty-note{color:var(--muted);font-size:13px;text-align:center;padding:16px 0;}
 
-  /* Voted / confirmation state */
   .voted-state{text-align:center;padding:10px 4px 4px;}
   .check-badge{
     width:64px;height:64px;
@@ -226,61 +196,6 @@
     margin-top:2px;
   }
   .voted-sub{color:var(--muted);font-size:13px;margin-top:8px;}
-
-  /* Results */
-  .results-sub{color:var(--muted);font-size:12px;margin-bottom:6px;font-weight:600;}
-  .row{margin-bottom:16px;}
-  .row-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    margin-bottom:7px;
-  }
-  .row-name{font-weight:700;font-size:14.5px;}
-  .row-count{font-family:'JetBrains Mono', monospace;font-size:13px;color:var(--blue);font-weight:600;}
-  .bar-track{
-    height:9px;
-    background:#F0F1F4;
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .bar-fill{
-    height:100%;
-    background:var(--lime);
-    border-radius:6px;
-    width:0%;
-    transition:width .6s cubic-bezier(.3,.8,.3,1);
-  }
-  .empty-note{color:var(--muted);font-size:13px;text-align:center;padding:16px 0;}
-
-  /* Active users */
-  .active-card{text-align:center;padding:38px 10px 8px;}
-  .pulse-dot{
-    width:8px;height:8px;border-radius:50%;
-    background:#3FCB6B;
-    display:inline-block;
-    margin-right:7px;
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(63,203,107,0.45);}
-    70%{box-shadow:0 0 0 8px rgba(63,203,107,0);}
-    100%{box-shadow:0 0 0 0 rgba(63,203,107,0);}
-  }
-  .active-label{
-    font-size:13px;
-    font-weight:600;
-    color:var(--muted);
-  }
-  .active-number{
-    font-family:'JetBrains Mono', monospace;
-    font-weight:700;
-    font-size:60px;
-    color:var(--ink);
-    margin:14px 0 4px;
-    line-height:1;
-  }
-  .active-sub{color:var(--muted-2);font-size:12.5px;}
 
   footer{
     margin-top:30px;
@@ -322,56 +237,28 @@
 
   <div id="configWarning" class="config-warning" style="display:none;">
     Firebase isn't configured yet — this page is showing preview UI only.
-    Open <code>index.html</code>, fill in <code>firebaseConfig</code> and the <code>TEAMS</code> list near the top of the
+    Open <code>index.html</code>, fill in <code>firebaseConfig</code> near the top of the
     <code>&lt;script&gt;</code> block, then reload.
   </div>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="vote">Vote</button>
-    <button class="tab" data-tab="results">Results</button>
-    <button class="tab" data-tab="active">Active</button>
-  </nav>
+  <div class="card" id="ballotCard">
+    <div class="card-title">Cast your vote</div>
+    <div class="card-hint">Choose one group. Your vote is final once submitted.</div>
+    <div class="field-label"><span class="info-dot">i</span> Group</div>
+    <div id="optionsList"></div>
+    <button class="cast-btn" id="castBtn" disabled>Cast Vote</button>
+    <div class="status-line" id="statusLine"></div>
+  </div>
 
-  <!-- VOTE -->
-  <section class="panel active" id="panel-vote">
-    <div class="card" id="ballotCard">
-      <div class="card-title">Cast your vote</div>
-      <div class="card-hint">Choose one group. Your vote is final once submitted.</div>
-      <div class="field-label"><span class="info-dot">i</span> Group</div>
-      <div id="optionsList"></div>
-      <button class="cast-btn" id="castBtn" disabled>Cast Vote</button>
-      <div class="status-line" id="statusLine"></div>
+  <div class="card voted-state" id="votedState" style="display:none;">
+    <div class="check-badge">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 13l4 4L19 7" stroke="#14151A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
-
-    <div class="card voted-state" id="votedState" style="display:none;">
-      <div class="check-badge">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 13l4 4L19 7" stroke="#14151A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="voted-team" id="votedTeamName"></div>
-      <div class="voted-sub">Your vote is in — check the Results tab.</div>
-    </div>
-  </section>
-
-  <!-- RESULTS -->
-  <section class="panel" id="panel-results">
-    <div class="card">
-      <div class="card-title">Live tally</div>
-      <div class="results-sub">Updates in real time</div>
-      <div class="card-divider"></div>
-      <div id="resultsList"></div>
-    </div>
-  </section>
-
-  <!-- ACTIVE -->
-  <section class="panel" id="panel-active">
-    <div class="card active-card">
-      <div class="active-label"><span class="pulse-dot"></span>On this page right now</div>
-      <div class="active-number" id="activeNumber">—</div>
-      <div class="active-sub">Refreshes every few seconds</div>
-    </div>
-  </section>
+    <div class="voted-team" id="votedTeamName"></div>
+    <div class="voted-sub">Your vote is in. Thanks for taking part.</div>
+  </div>
 
   <footer>
     <div class="brand-row">
@@ -390,12 +277,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, runTransaction, onSnapshot,
-  collection, serverTimestamp, Timestamp, query, where, getCountFromServer
+  collection, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-/* =================== CONFIG — EDIT THESE TWO THINGS =================== */
-
-// 1. Paste your Firebase project's web config here (Firebase console → Project settings)
+/* =================== CONFIG =================== */
 const firebaseConfig = {
   apiKey: "AIzaSyCSZCaYypwvdx4N4ZwfmOEs8dXJzx-IiTk",
   authDomain: "ai-forum-peoples-choice.firebaseapp.com",
@@ -404,16 +289,7 @@ const firebaseConfig = {
   messagingSenderId: "987357320354",
   appId: "1:987357320354:web:74afc2ea53b1257d8a33fb"
 };
-
-// 2. Edit the groups/teams up for the award
-const TEAMS = [
-  { id: "team-a", name: "Team Sunrise" },
-  { id: "team-b", name: "Team Nova" },
-  { id: "team-c", name: "Team Atlas" },
-  { id: "team-d", name: "Team Ember" }
-];
-
-/* ========================================================================= */
+/* ================================================ */
 
 const isConfigured = !Object.values(firebaseConfig).some(v => String(v).startsWith("YOUR_"));
 
@@ -423,21 +299,34 @@ const statusLine = document.getElementById('statusLine');
 const ballotCard = document.getElementById('ballotCard');
 const votedState = document.getElementById('votedState');
 const votedTeamName = document.getElementById('votedTeamName');
-const resultsList = document.getElementById('resultsList');
-const activeNumber = document.getElementById('activeNumber');
 const configWarning = document.getElementById('configWarning');
 
+let teams = [];
 let selectedTeam = null;
+let votedTeamId = null;
 
 function renderOptions(){
+  if (votedTeamId) return;
+  if (teams.length === 0) {
+    optionsList.innerHTML = '<div class="empty-note">No groups set up yet.</div>';
+    castBtn.disabled = true;
+    return;
+  }
   optionsList.innerHTML = '';
-  TEAMS.forEach(team => {
+  teams.forEach(team => {
     const el = document.createElement('div');
     el.className = 'option';
     el.dataset.id = team.id;
-    el.innerHTML = `<div class="option-mark"></div><div class="option-name">${team.name}</div>`;
+    if (team.id === selectedTeam) el.classList.add('selected');
+    const nameEl = document.createElement('div');
+    nameEl.className = 'option-name';
+    nameEl.textContent = team.name;
+    const markEl = document.createElement('div');
+    markEl.className = 'option-mark';
+    el.appendChild(markEl);
+    el.appendChild(nameEl);
     el.addEventListener('click', () => {
-      if (castBtn.disabled && castBtn.dataset.locked === 'true') return;
+      if (castBtn.dataset.locked === 'true') return;
       selectedTeam = team.id;
       document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
       el.classList.add('selected');
@@ -446,24 +335,18 @@ function renderOptions(){
     optionsList.appendChild(el);
   });
 }
-renderOptions();
 
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-  });
-});
+function refreshVotedNameDisplay(){
+  if (!votedTeamId) return;
+  const t = teams.find(x => x.id === votedTeamId);
+  votedTeamName.textContent = t ? t.name : 'your pick';
+}
 
 if (!isConfigured) {
   configWarning.style.display = 'block';
   statusLine.textContent = 'Voting disabled until Firebase is configured.';
   castBtn.disabled = true;
   castBtn.dataset.locked = 'true';
-  resultsList.innerHTML = '<div class="empty-note">Results will appear here once Firebase is configured.</div>';
-  activeNumber.textContent = '0';
 } else {
   initApp();
 }
@@ -474,6 +357,17 @@ async function initApp(){
   const db = getFirestore(app);
 
   statusLine.textContent = 'Connecting…';
+
+  onSnapshot(collection(db, 'teams'), (snap) => {
+    teams = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (a.createdAt?.toMillis?.() || 0) - (b.createdAt?.toMillis?.() || 0));
+    if (votedTeamId) {
+      refreshVotedNameDisplay();
+    } else {
+      renderOptions();
+    }
+  });
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) return;
@@ -505,7 +399,6 @@ async function initApp(){
     const uid = auth.currentUser.uid;
     const voterRef = doc(db, 'voters', uid);
     const tallyRef = doc(db, 'tally', selectedTeam);
-    const teamMeta = TEAMS.find(t => t.id === selectedTeam);
 
     try {
       await runTransaction(db, async (tx) => {
@@ -515,7 +408,7 @@ async function initApp(){
         }
         const tallySnap = await tx.get(tallyRef);
         const current = tallySnap.exists() ? (tallySnap.data().count || 0) : 0;
-        tx.set(tallyRef, { count: current + 1, name: teamMeta.name }, { merge: true });
+        tx.set(tallyRef, { count: current + 1 }, { merge: true });
         tx.set(voterRef, { team: selectedTeam, timestamp: serverTimestamp() });
       });
       showVotedState(selectedTeam);
@@ -531,40 +424,10 @@ async function initApp(){
   });
 
   function showVotedState(teamId){
-    const team = TEAMS.find(t => t.id === teamId);
-    votedTeamName.textContent = team ? team.name : teamId;
+    votedTeamId = teamId;
+    refreshVotedNameDisplay();
     ballotCard.style.display = 'none';
     votedState.style.display = 'block';
-  }
-
-  onSnapshot(collection(db, 'tally'), (snap) => {
-    const counts = {};
-    snap.forEach(d => counts[d.id] = d.data().count || 0);
-    renderResults(counts);
-  });
-
-  function renderResults(counts){
-    const total = Object.values(counts).reduce((a,b) => a+b, 0);
-    const rows = TEAMS
-      .map(t => ({ ...t, count: counts[t.id] || 0 }))
-      .sort((a,b) => b.count - a.count);
-
-    if (total === 0) {
-      resultsList.innerHTML = '<div class="empty-note">No votes yet — be the first.</div>';
-      return;
-    }
-
-    resultsList.innerHTML = rows.map(r => {
-      const pct = total ? Math.round((r.count/total)*100) : 0;
-      return `
-        <div class="row">
-          <div class="row-top">
-            <span class="row-name">${r.name}</span>
-            <span class="row-count">${r.count}</span>
-          </div>
-          <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-        </div>`;
-    }).join('');
   }
 
   function startPresence(uid){
@@ -576,19 +439,6 @@ async function initApp(){
       if (document.visibilityState === 'visible') beat();
     });
   }
-
-  async function pollActiveUsers(){
-    try {
-      const threshold = Timestamp.fromMillis(Date.now() - 30000);
-      const q = query(collection(db, 'presence'), where('lastSeen', '>', threshold));
-      const snap = await getCountFromServer(q);
-      activeNumber.textContent = snap.data().count;
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  pollActiveUsers();
-  setInterval(pollActiveUsers, 10000);
 }
 </script>
 </body>

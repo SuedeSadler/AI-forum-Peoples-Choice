@@ -36,160 +36,54 @@
     min-height:100vh;
   }
 
-  /* ---------- PIN gate ---------- */
-  #gate{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-  }
+  #gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
   .pin-card{
-    background:var(--card);
-    border-radius:var(--radius-card);
-    box-shadow:var(--shadow-card);
-    padding:40px 34px;
-    width:100%;
-    max-width:360px;
-    text-align:center;
+    background:var(--card);border-radius:var(--radius-card);box-shadow:var(--shadow-card);
+    padding:40px 34px;width:100%;max-width:360px;text-align:center;
   }
   .pin-title{font-weight:800;font-size:22px;margin:0 0 6px;}
   .pin-sub{color:var(--muted);font-size:13px;margin-bottom:24px;}
   #pinInput{
-    width:100%;
-    text-align:center;
-    letter-spacing:10px;
-    font-family:'JetBrains Mono', monospace;
-    font-size:26px;
-    font-weight:700;
-    padding:14px;
-    border:1.5px solid var(--line);
-    border-radius:var(--radius-ctrl);
-    outline:none;
-    margin-bottom:16px;
+    width:100%;text-align:center;letter-spacing:10px;font-family:'JetBrains Mono', monospace;
+    font-size:26px;font-weight:700;padding:14px;border:1.5px solid var(--line);
+    border-radius:var(--radius-ctrl);outline:none;margin-bottom:16px;
   }
   #pinInput:focus{border-color:var(--ink);}
   .pin-card.shake{animation:shake .4s ease;}
-  @keyframes shake{
-    0%,100%{transform:translateX(0);}
-    20%,60%{transform:translateX(-8px);}
-    40%,80%{transform:translateX(8px);}
-  }
+  @keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-8px);}40%,80%{transform:translateX(8px);}}
   .pin-error{color:var(--red);font-size:12.5px;margin-bottom:10px;min-height:16px;}
-  .unlock-btn{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:var(--radius-ctrl);
-    background:var(--lime);
-    color:var(--ink);
-    font-weight:700;
-    font-size:14.5px;
-    cursor:pointer;
-  }
+  .unlock-btn{width:100%;padding:15px;border:none;border-radius:var(--radius-ctrl);background:var(--lime);color:var(--ink);font-weight:700;font-size:14.5px;cursor:pointer;}
   .unlock-btn:hover{background:var(--lime-deep);}
-  .back-link{
-    display:inline-block;
-    margin-top:18px;
-    font-size:12.5px;
-    color:var(--muted);
-    text-decoration:none;
-  }
+  .back-link{display:inline-block;margin-top:18px;font-size:12.5px;color:var(--muted);text-decoration:none;}
 
-  /* ---------- Dashboard ---------- */
   #dashboard{display:none;padding:32px clamp(20px,4vw,56px) 50px;}
-  .dash-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:26px;
-    flex-wrap:wrap;
-    gap:14px;
-  }
-  .dash-brand{display:flex;align-items:center;gap:12px;}
-  .dash-logo{width:42px;height:42px;border-radius:12px;object-fit:cover;box-shadow:0 4px 10px rgba(20,21,26,0.12);}
+  .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
   .dash-title{font-weight:800;font-size:clamp(20px,2.4vw,28px);letter-spacing:-0.01em;}
   .dash-title-sub{color:var(--muted);font-size:12.5px;font-weight:600;}
 
-  .status-pill{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:var(--card);
-    border-radius:999px;
-    padding:9px 16px;
-    font-size:13px;
-    font-weight:700;
-    box-shadow:var(--shadow-card);
-  }
+  .status-pill{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:700;box-shadow:var(--shadow-card);}
   .pulse-dot{width:8px;height:8px;border-radius:50%;background:#3FCB6B;animation:pulse 2s infinite;}
   .status-pill.closed .pulse-dot{background:var(--muted-2);animation:none;}
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(63,203,107,0.45);}
-    70%{box-shadow:0 0 0 8px rgba(63,203,107,0);}
-    100%{box-shadow:0 0 0 0 rgba(63,203,107,0);}
-  }
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,203,107,0.45);}70%{box-shadow:0 0 0 8px rgba(63,203,107,0);}100%{box-shadow:0 0 0 0 rgba(63,203,107,0);}}
 
-  .gear-btn{
-    width:38px;height:38px;
-    border-radius:12px;
-    border:none;
-    background:var(--card);
-    box-shadow:var(--shadow-card);
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:16px;
-  }
+  .gear-btn{width:38px;height:38px;border-radius:12px;border:none;background:var(--card);box-shadow:var(--shadow-card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;}
 
-  .timer-card{
-    background:var(--card);
-    border-radius:var(--radius-card);
-    box-shadow:var(--shadow-card);
-    padding:28px 30px;
-    text-align:center;
-    margin-bottom:22px;
-  }
+  .timer-card{background:var(--card);border-radius:var(--radius-card);box-shadow:var(--shadow-card);padding:28px 30px;text-align:center;margin-bottom:22px;}
   .timer-label{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
-  .timer-digits{
-    font-family:'JetBrains Mono', monospace;
-    font-weight:700;
-    font-size:clamp(48px,9vw,96px);
-    line-height:1;
-    color:var(--ink);
-  }
+  .timer-digits{font-family:'JetBrains Mono', monospace;font-weight:700;font-size:clamp(48px,9vw,96px);line-height:1;color:var(--ink);}
   .timer-digits.closed{color:var(--red);}
   .timer-digits.idle{color:var(--muted-2);}
 
-  .main-grid{
-    display:grid;
-    grid-template-columns:1fr 1.3fr;
-    gap:22px;
-  }
-  @media (max-width:800px){
-    .main-grid{grid-template-columns:1fr;}
-  }
+  .main-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;margin-bottom:22px;}
+  .sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media (max-width:800px){.main-grid{grid-template-columns:1fr;}.sub-grid{grid-template-columns:1fr;}}
 
-  .card{
-    background:var(--card);
-    border-radius:var(--radius-card);
-    box-shadow:var(--shadow-card);
-    padding:28px 26px;
-  }
+  .card{background:var(--card);border-radius:var(--radius-card);box-shadow:var(--shadow-card);padding:28px 26px;}
   .card-title{font-weight:800;font-size:18px;margin:0 0 4px;}
   .card-sub{color:var(--muted);font-size:12.5px;margin-bottom:18px;font-weight:600;}
 
   .qr-wrap{display:flex;flex-direction:column;align-items:center;}
-  #qrCanvas{border-radius:16px;}
-  .qr-url{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12px;
-    color:var(--blue);
-    margin-top:16px;
-    word-break:break-all;
-    text-align:center;
-  }
+  .qr-url{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--blue);margin-top:16px;word-break:break-all;text-align:center;}
 
   .row{margin-bottom:18px;}
   .row:last-child{margin-bottom:0;}
@@ -200,44 +94,51 @@
   .bar-fill{height:100%;background:var(--lime);border-radius:8px;width:0%;transition:width .6s cubic-bezier(.3,.8,.3,1);}
   .empty-note{color:var(--muted);font-size:13px;text-align:center;padding:20px 0;}
 
-  /* Controls drawer */
-  #controls{
-    margin-top:22px;
-    background:var(--card);
-    border-radius:var(--radius-card);
-    box-shadow:var(--shadow-card);
-    padding:22px 24px;
-    display:none;
-  }
+  .big-number{font-family:'JetBrains Mono', monospace;font-weight:700;font-size:clamp(46px,7vw,72px);color:var(--ink);line-height:1;text-align:center;}
+  .big-number-label{color:var(--muted);font-size:12.5px;font-weight:700;text-align:center;margin-top:6px;text-transform:uppercase;letter-spacing:1px;}
+
+  .reveal-wrap{text-align:center;margin-top:18px;}
+  .reveal-btn{padding:13px 22px;border:none;border-radius:var(--radius-ctrl);background:var(--ink);color:#fff;font-weight:700;font-size:13.5px;cursor:pointer;}
+  .reveal-btn:hover{opacity:0.9;}
+  .reveal-hint{color:var(--muted-2);font-size:12px;margin-top:10px;}
+
+  #controls{margin-top:22px;background:var(--card);border-radius:var(--radius-card);box-shadow:var(--shadow-card);padding:24px;display:none;}
   #controls.open{display:block;}
+  .controls-section{margin-bottom:26px;}
+  .controls-section:last-child{margin-bottom:0;}
+  .controls-section-title{font-weight:800;font-size:15px;margin-bottom:4px;}
   .controls-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-  .controls-row input[type=number]{
-    width:80px;
-    padding:11px;
-    border:1.5px solid var(--line);
-    border-radius:var(--radius-ctrl);
-    font-family:'JetBrains Mono', monospace;
-    font-size:14px;
-    text-align:center;
-  }
-  .btn{
-    padding:11px 18px;
-    border:none;
-    border-radius:var(--radius-ctrl);
-    font-weight:700;
-    font-size:13.5px;
-    cursor:pointer;
-  }
+  .controls-row input[type=number]{width:80px;padding:11px;border:1.5px solid var(--line);border-radius:var(--radius-ctrl);font-family:'JetBrains Mono', monospace;font-size:14px;text-align:center;}
+  .btn{padding:11px 18px;border:none;border-radius:var(--radius-ctrl);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;}
   .btn-start{background:var(--lime);color:var(--ink);}
   .btn-start:hover{background:var(--lime-deep);}
   .btn-reset{background:#F0F1F4;color:var(--ink);}
   .btn-reset:hover{background:#E4E5EA;}
   .controls-note{color:var(--muted);font-size:12px;margin-top:12px;line-height:1.5;}
+
+  .team-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;}
+  .team-row input[type=text]{
+    flex:1;padding:11px 13px;border:1.5px solid var(--line);border-radius:var(--radius-ctrl);
+    font-family:'Plus Jakarta Sans', sans-serif;font-size:14px;font-weight:600;
+  }
+  .team-row input[type=text]:focus{border-color:var(--ink);outline:none;}
+  .icon-btn{
+    width:38px;height:38px;flex:none;border:none;border-radius:var(--radius-ctrl);
+    background:#F0F1F4;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;
+  }
+  .icon-btn.save{background:var(--lime);}
+  .icon-btn.save:hover{background:var(--lime-deep);}
+  .icon-btn.remove{color:var(--red);}
+  .icon-btn.remove:hover{background:#FBE4E4;}
+  .add-team-row{display:flex;gap:8px;margin-top:14px;}
+  .add-team-row input[type=text]{
+    flex:1;padding:11px 13px;border:1.5px dashed var(--muted-2);border-radius:var(--radius-ctrl);
+    font-family:'Plus Jakarta Sans', sans-serif;font-size:14px;font-weight:600;
+  }
 </style>
 </head>
 <body>
 
-  <!-- PIN GATE -->
   <div id="gate">
     <div class="pin-card" id="pinCard">
       <div class="pin-title">Admin Access</div>
@@ -249,14 +150,11 @@
     </div>
   </div>
 
-  <!-- DASHBOARD -->
   <div id="dashboard">
     <div class="dash-header">
-      <div class="dash-brand">
-        <div>
-          <div class="dash-title">People's Choice Award</div>
-          <div class="dash-title-sub">Live event display</div>
-        </div>
+      <div>
+        <div class="dash-title">People's Choice Award</div>
+        <div class="dash-title-sub">Live event display</div>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
         <div class="status-pill" id="statusPill"><span class="pulse-dot"></span><span id="statusText">Voting open</span></div>
@@ -280,22 +178,52 @@
       </div>
 
       <div class="card">
-        <div class="card-title">Live tally</div>
-        <div class="card-sub">Updates in real time</div>
+        <div class="card-title">Results</div>
+        <div class="card-sub" id="resultsSub">Votes are being counted</div>
         <div id="resultsList"></div>
+        <div class="reveal-wrap" id="revealWrap" style="display:none;">
+          <button class="reveal-btn" id="revealBtn">Reveal results</button>
+          <div class="reveal-hint">Available once voting closes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-grid">
+      <div class="card">
+        <div class="big-number" id="activeNumber">—</div>
+        <div class="big-number-label"><span class="pulse-dot" style="margin-right:6px;"></span>On this page right now</div>
+      </div>
+      <div class="card">
+        <div class="big-number" id="votesNumber">—</div>
+        <div class="big-number-label">Total votes cast</div>
       </div>
     </div>
 
     <div id="controls">
-      <div class="card-title" style="font-size:15px;">Timer controls</div>
-      <div class="controls-note" style="margin-top:2px;margin-bottom:14px;">Visible only to whoever opens this page — turn the display gear off before projecting if you'd rather the room not see these.</div>
-      <div class="controls-row">
-        <input type="number" id="minutesInput" value="10" min="1" max="180">
-        <span style="font-size:13px;color:var(--muted);font-weight:600;">minutes</span>
-        <button class="btn btn-start" id="startBtn">Start timer</button>
-        <button class="btn btn-reset" id="resetBtn">Reset</button>
+      <div class="controls-section">
+        <div class="controls-section-title">Timer</div>
+        <div class="controls-row">
+          <input type="number" id="minutesInput" value="10" min="1" max="180">
+          <span style="font-size:13px;color:var(--muted);font-weight:600;">minutes</span>
+          <button class="btn btn-start" id="startBtn">Start timer</button>
+          <button class="btn btn-reset" id="resetBtn">Reset</button>
+        </div>
+        <div class="controls-note">Starting or resetting the timer affects everyone viewing this display, and resetting also re-hides the results.</div>
       </div>
-      <div class="controls-note">Starting a timer overwrites any timer currently running, for everyone viewing this display.</div>
+
+      <div class="controls-section">
+        <div class="controls-section-title">Manage groups</div>
+        <div class="controls-note" style="margin-top:2px;margin-bottom:14px;">Edit a name and tap the check to save. These update on the voting page immediately.</div>
+        <div id="teamsManageList"></div>
+        <div class="add-team-row">
+          <input type="text" id="newTeamInput" placeholder="New group name">
+          <button class="icon-btn save" id="addTeamBtn" title="Add group">+</button>
+        </div>
+      </div>
+
+      <div class="controls-section" style="margin-bottom:0;">
+        <div class="controls-note">Turn this gear off before projecting so the room only sees the display, not these controls.</div>
+      </div>
     </div>
   </div>
 
@@ -303,10 +231,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
-  getFirestore, doc, setDoc, onSnapshot, collection, Timestamp
+  getFirestore, doc, setDoc, deleteDoc, onSnapshot,
+  collection, serverTimestamp, Timestamp, query, where, getCountFromServer
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-/* =================== CONFIG — keep this in sync with index.html =================== */
+/* =================== CONFIG — keep in sync with index.html =================== */
 const firebaseConfig = {
   apiKey: "AIzaSyCSZCaYypwvdx4N4ZwfmOEs8dXJzx-IiTk",
   authDomain: "ai-forum-peoples-choice.firebaseapp.com",
@@ -315,20 +244,15 @@ const firebaseConfig = {
   messagingSenderId: "987357320354",
   appId: "1:987357320354:web:74afc2ea53b1257d8a33fb"
 };
-
-// Must match TEAMS in index.html exactly (same ids) so the tally lines up.
-const TEAMS = [
-  { id: "team-a", name: "Team Sunrise" },
-  { id: "team-b", name: "Team Nova" },
-  { id: "team-c", name: "Team Atlas" },
-  { id: "team-d", name: "Team Ember" }
-];
-
 const ADMIN_PIN = "1234";
+/* ================================================================================ */
 
-/* ==================================================================================== */
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
 
-// ---------- PIN gate ----------
 const gate = document.getElementById('gate');
 const dashboard = document.getElementById('dashboard');
 const pinCard = document.getElementById('pinCard');
@@ -360,50 +284,139 @@ if (sessionStorage.getItem('pca_admin_unlocked') === '1') {
   initDashboard();
 }
 
-// ---------- Dashboard ----------
 let dashboardStarted = false;
 
 function initDashboard(){
   if (dashboardStarted) return;
   dashboardStarted = true;
 
-  // Gear toggle for controls drawer
-  const controls = document.getElementById('controls');
   document.getElementById('gearBtn').addEventListener('click', () => {
-    controls.classList.toggle('open');
+    document.getElementById('controls').classList.toggle('open');
   });
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
 
+  let teams = [];
+  let tallyCounts = {};
+  let revealed = false;
+
   onAuthStateChanged(auth, (user) => {
     if (!user) return;
+    startTeamsListener();
     startTallyListener();
     startTimerListener();
+    startPresenceCount();
   });
   signInAnonymously(auth).catch(err => console.error(err));
 
-  const resultsList = document.getElementById('resultsList');
-  function startTallyListener(){
-    onSnapshot(collection(db, 'tally'), (snap) => {
-      const counts = {};
-      snap.forEach(d => counts[d.id] = d.data().count || 0);
-      renderResults(counts);
+  // ---------- Teams: ballot options shared with index.html ----------
+  const teamsManageList = document.getElementById('teamsManageList');
+
+  function startTeamsListener(){
+    onSnapshot(collection(db, 'teams'), (snap) => {
+      teams = snap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .sort((a, b) => (a.createdAt?.toMillis?.() || 0) - (b.createdAt?.toMillis?.() || 0));
+      renderTeamsManageList();
+      renderResults();
     });
   }
-  function renderResults(counts){
-    const total = Object.values(counts).reduce((a,b) => a+b, 0);
-    const rows = TEAMS.map(t => ({ ...t, count: counts[t.id] || 0 })).sort((a,b) => b.count - a.count);
-    if (total === 0) {
-      resultsList.innerHTML = '<div class="empty-note">No votes yet.</div>';
+
+  function renderTeamsManageList(){
+    if (teams.length === 0) {
+      teamsManageList.innerHTML = '<div class="empty-note" style="padding:8px 0;">No groups yet — add one below.</div>';
+      return;
+    }
+    teamsManageList.innerHTML = teams.map(t => `
+      <div class="team-row" data-id="${t.id}">
+        <input type="text" class="team-name-input" value="${escapeHtml(t.name)}">
+        <button class="icon-btn save save-team" title="Save">&#10003;</button>
+        <button class="icon-btn remove remove-team" title="Remove">&#10005;</button>
+      </div>
+    `).join('');
+  }
+
+  teamsManageList.addEventListener('click', async (e) => {
+    const row = e.target.closest('.team-row');
+    if (!row) return;
+    const id = row.dataset.id;
+    if (e.target.classList.contains('save-team')) {
+      const input = row.querySelector('.team-name-input');
+      const newName = input.value.trim();
+      if (!newName) return;
+      try { await setDoc(doc(db, 'teams', id), { name: newName }, { merge: true }); }
+      catch (err) { console.error(err); }
+    }
+    if (e.target.classList.contains('remove-team')) {
+      try { await deleteDoc(doc(db, 'teams', id)); }
+      catch (err) { console.error(err); }
+    }
+  });
+
+  document.getElementById('addTeamBtn').addEventListener('click', addTeam);
+  document.getElementById('newTeamInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') addTeam();
+  });
+  async function addTeam(){
+    const input = document.getElementById('newTeamInput');
+    const name = input.value.trim();
+    if (!name) return;
+    try {
+      const ref = doc(collection(db, 'teams'));
+      await setDoc(ref, { name, createdAt: serverTimestamp() });
+      input.value = '';
+    } catch (err) { console.error(err); }
+  }
+
+  // ---------- Tally ----------
+  function startTallyListener(){
+    onSnapshot(collection(db, 'tally'), (snap) => {
+      tallyCounts = {};
+      snap.forEach(d => tallyCounts[d.id] = d.data().count || 0);
+      renderResults();
+    });
+  }
+
+  const resultsList = document.getElementById('resultsList');
+  const resultsSub = document.getElementById('resultsSub');
+  const revealWrap = document.getElementById('revealWrap');
+  const revealBtn = document.getElementById('revealBtn');
+  let votingClosed = false;
+
+  revealBtn.addEventListener('click', () => {
+    revealed = true;
+    renderResults();
+  });
+
+  function renderResults(){
+    const total = Object.values(tallyCounts).reduce((a,b) => a+b, 0);
+    document.getElementById('votesNumber').textContent = total;
+
+    if (!revealed) {
+      resultsSub.textContent = votingClosed ? 'Voting has closed' : 'Votes are being counted';
+      resultsList.innerHTML = `
+        <div style="text-align:center;padding:14px 0 4px;">
+          <div class="big-number" style="font-size:clamp(40px,6vw,64px);">${total}</div>
+          <div class="big-number-label">votes cast so far</div>
+        </div>`;
+      revealWrap.style.display = votingClosed ? 'block' : 'none';
+      return;
+    }
+
+    revealWrap.style.display = 'none';
+    resultsSub.textContent = 'Final results';
+    const rows = teams.map(t => ({ ...t, count: tallyCounts[t.id] || 0 })).sort((a,b) => b.count - a.count);
+    if (total === 0 || rows.length === 0) {
+      resultsList.innerHTML = '<div class="empty-note">No votes were cast.</div>';
       return;
     }
     resultsList.innerHTML = rows.map(r => {
       const pct = total ? Math.round((r.count/total)*100) : 0;
       return `
         <div class="row">
-          <div class="row-top"><span class="row-name">${r.name}</span><span class="row-count">${r.count}</span></div>
+          <div class="row-top"><span class="row-name">${escapeHtml(r.name)}</span><span class="row-count">${r.count}</span></div>
           <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
         </div>`;
     }).join('');
@@ -424,7 +437,11 @@ function initDashboard(){
   function startTimerListener(){
     onSnapshot(configRef, (snap) => {
       const data = snap.exists() ? snap.data() : null;
-      endsAtMs = data && data.endsAt ? data.endsAt.toMillis() : null;
+      const newEndsAtMs = data && data.endsAt ? data.endsAt.toMillis() : null;
+      if (newEndsAtMs === null && endsAtMs !== null) {
+        revealed = false;
+      }
+      endsAtMs = newEndsAtMs;
       tick();
     });
     if (tickHandle) clearInterval(tickHandle);
@@ -437,6 +454,8 @@ function initDashboard(){
       timerDigits.className = 'timer-digits idle';
       statusPill.className = 'status-pill closed';
       statusText.textContent = 'Timer not started';
+      votingClosed = false;
+      renderResults();
       return;
     }
     const remainingMs = endsAtMs - Date.now();
@@ -445,6 +464,7 @@ function initDashboard(){
       timerDigits.className = 'timer-digits closed';
       statusPill.className = 'status-pill closed';
       statusText.textContent = 'Voting closed';
+      if (!votingClosed) { votingClosed = true; renderResults(); }
       return;
     }
     const totalSec = Math.ceil(remainingMs / 1000);
@@ -454,25 +474,36 @@ function initDashboard(){
     timerDigits.className = 'timer-digits';
     statusPill.className = 'status-pill';
     statusText.textContent = 'Voting open';
+    if (votingClosed) { votingClosed = false; renderResults(); }
   }
 
   startBtn.addEventListener('click', async () => {
     const mins = Math.max(1, Math.min(180, parseInt(minutesInput.value, 10) || 10));
     const endsAt = Timestamp.fromMillis(Date.now() + mins * 60000);
-    try {
-      await setDoc(configRef, { endsAt }, { merge: true });
-    } catch (err) {
-      console.error(err);
-    }
+    try { await setDoc(configRef, { endsAt }, { merge: true }); }
+    catch (err) { console.error(err); }
   });
 
   resetBtn.addEventListener('click', async () => {
+    try { await setDoc(configRef, { endsAt: null }, { merge: true }); }
+    catch (err) { console.error(err); }
+  });
+
+  // ---------- Active sessions ----------
+  function startPresenceCount(){
+    pollActiveUsers();
+    setInterval(pollActiveUsers, 10000);
+  }
+  async function pollActiveUsers(){
     try {
-      await setDoc(configRef, { endsAt: null }, { merge: true });
+      const threshold = Timestamp.fromMillis(Date.now() - 30000);
+      const q = query(collection(db, 'presence'), where('lastSeen', '>', threshold));
+      const snap = await getCountFromServer(q);
+      document.getElementById('activeNumber').textContent = snap.data().count;
     } catch (err) {
       console.error(err);
     }
-  });
+  }
 }
 </script>
 </body>
