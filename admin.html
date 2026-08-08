@@ -278,13 +278,13 @@ function tryUnlock(){
 unlockBtn.addEventListener('click', tryUnlock);
 pinInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
 
+let dashboardStarted = false;
+
 if (sessionStorage.getItem('pca_admin_unlocked') === '1') {
   gate.style.display = 'none';
   dashboard.style.display = 'block';
   initDashboard();
 }
-
-let dashboardStarted = false;
 
 function initDashboard(){
   if (dashboardStarted) return;
